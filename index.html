@@ -4,8 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>QuickDesk – Free online office tools: PDF, scanner, screen recorder and more</title>
-<meta name="description" content="Free office tools that run in your browser: merge and split PDF, image to PDF, scan documents, compress PDF and images, screen recorder, OCR, QR codes and more. No sign-up. Files never leave your device.">
+<meta name="description" content="Free office tools that run in your browser: merge and split PDF, Word to PDF, image to PDF, scan documents, compress PDF and images, screen recorder, OCR, QR codes and more. No sign-up. Files never leave your device.">
 <meta name="theme-color" content="#1f4fff">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f4fff'/%3E%3Cpath d='M9 16l5 5 9-10' fill='none' stroke='%23ffe14d' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <!--
   HOW TO REBRAND: search this file for "QuickDesk" and replace it with your brand name,
@@ -58,8 +60,8 @@ button,input,select,textarea{font:inherit;color:inherit}
 .launcher{position:relative;max-width:640px}
 .launcher input{width:100%;height:60px;padding:0 4.2rem 0 3.4rem;font-size:1.1rem;background:var(--desk);border:2px solid var(--ink);border-radius:14px;box-shadow:5px 5px 0 var(--hl)}
 .launcher input::placeholder{color:var(--muted)}
-.launcher svg{position:absolute;left:1.1rem;top:50%;translate:0 -50%;width:22px;height:22px;fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linecap:round}
-.launcher kbd{position:absolute;right:1rem;top:50%;translate:0 -50%;border:1px solid var(--line);border-bottom-width:3px;border-radius:7px;padding:.05rem .5rem;font:600 .9rem var(--font);color:var(--muted);background:var(--paper)}
+.launcher svg{position:absolute;left:1.1rem;top:50%;transform:translateY(-50%);width:22px;height:22px;fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linecap:round}
+.launcher kbd{position:absolute;right:1rem;top:50%;transform:translateY(-50%);border:1px solid var(--line);border-bottom-width:3px;border-radius:7px;padding:.05rem .5rem;font:600 .9rem var(--font);color:var(--muted);background:var(--paper)}
 .promises{display:flex;flex-wrap:wrap;gap:.6rem 1.6rem;list-style:none;margin:1.6rem 0 0;padding:0;font-size:.95rem;color:var(--muted)}
 .promises li{display:flex;align-items:center;gap:.45rem}
 .promises svg{width:18px;height:18px;stroke:var(--ok);fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
@@ -73,11 +75,11 @@ button,input,select,textarea{font:inherit;color:inherit}
 .card{--c:var(--c-pdf);display:grid;grid-template-columns:44px 1fr;gap:.2rem .9rem;align-items:start;background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--c);border-radius:var(--radius);padding:1rem 1rem 1rem .9rem;text-decoration:none;position:relative}
 .card:hover{border-color:var(--c);box-shadow:var(--shadow)}
 .card[data-cat=rec]{--c:var(--c-rec)}.card[data-cat=img]{--c:var(--c-img)}.card[data-cat=off]{--c:var(--c-off)}
-.ico{grid-row:span 2;width:44px;height:44px;border-radius:10px;display:grid;place-items:center;background:color-mix(in srgb,var(--c) 13%,transparent);color:var(--c)}
+.ico{grid-row:span 2;width:44px;height:44px;border-radius:10px;display:grid;place-items:center;background:var(--desk);background:color-mix(in srgb,var(--c) 13%,transparent);color:var(--c)}
 .ico svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 .card h3{margin:0;font-size:1.02rem;line-height:1.3}
 .card p{margin:0;color:var(--muted);font-size:.9rem;line-height:1.45}
-.hot{position:absolute;right:.7rem;top:.7rem;background:var(--hl);color:#1a1a1a;font-size:.72rem;font-weight:700;border-radius:6px;padding:.05rem .45rem}
+.hot{display:inline-block;margin-left:.4rem;vertical-align:2px;background:var(--hl);color:#1a1a1a;font-size:.7rem;font-weight:700;border-radius:6px;padding:.05rem .45rem;white-space:nowrap}
 .empty{padding:2rem;text-align:center;color:var(--muted);background:var(--paper);border:1px dashed var(--line);border-radius:var(--radius)}
 
 /* info sections */
@@ -95,7 +97,7 @@ footer.foot{padding:2rem 0;color:var(--muted);font-size:.92rem;border-top:1px so
 footer.foot .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem}
 
 /* workspace (opens when a tool is chosen) */
-.ws{position:fixed;inset:0;z-index:100;background:var(--desk);overflow:auto;animation:wsin .18s ease-out}
+.ws{position:fixed;top:0;right:0;bottom:0;left:0;z-index:100;background:var(--desk);overflow:auto;animation:wsin .18s ease-out}
 .ws[hidden]{display:none}
 @keyframes wsin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 .ws-bar{position:sticky;top:0;background:var(--paper);border-bottom:1px solid var(--line);z-index:2}
@@ -124,7 +126,7 @@ footer.foot .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:
 .status{min-height:1.5em;margin:.9rem 0 0;color:var(--muted);font-size:.95rem}
 .status.err{color:var(--bad)}
 .drop{display:grid;justify-items:center;gap:.25rem;text-align:center;border:2px dashed var(--line);border-radius:12px;padding:2rem 1rem;cursor:pointer;background:var(--desk)}
-.drop:hover,.drop.over,.drop:focus-within{border-color:var(--blue);background:color-mix(in srgb,var(--blue) 7%,var(--desk))}
+.drop:hover,.drop.over,.drop:focus-within{border-color:var(--blue);background:var(--desk);background:color-mix(in srgb,var(--blue) 7%,var(--desk))}
 .drop svg{width:34px;height:34px;stroke:var(--blue);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .drop small{color:var(--muted)}
 .flist{list-style:none;margin:.8rem 0 0;padding:0;display:grid;gap:.4rem}
@@ -159,8 +161,30 @@ canvas.qr{max-width:100%;height:auto;border:1px solid var(--line);border-radius:
 .meter{height:8px;border-radius:99px;background:var(--line);overflow:hidden;margin-top:.6rem}.meter i{display:block;height:100%;width:0;background:var(--bad);transition:width .25s,background .25s}
 
 /* toast */
-.toast{position:fixed;left:50%;bottom:1.4rem;translate:-50% 0;background:var(--ink);color:var(--paper);padding:.7rem 1.1rem;border-radius:10px;z-index:300;box-shadow:var(--shadow);max-width:min(92vw,520px);opacity:0;pointer-events:none;transition:opacity .2s}
+.toast{position:fixed;left:50%;bottom:1.4rem;transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:.7rem 1.1rem;border-radius:10px;z-index:300;box-shadow:var(--shadow);max-width:min(92vw,520px);opacity:0;pointer-events:none;transition:opacity .2s}
 .toast.show{opacity:1}.toast.err{background:var(--bad);color:#fff}
+
+.tag{display:inline-block;margin-left:.4rem;vertical-align:2px;background:var(--desk);border:1px solid var(--line);color:var(--muted);font-size:.7rem;font-weight:700;border-radius:6px;padding:.05rem .45rem;white-space:nowrap}
+.note{border:1px solid var(--line);background:var(--desk);border-radius:12px;padding:1.2rem}.note p{color:var(--muted)}
+.result{margin-top:1.2rem;border:2px solid var(--ok);background:color-mix(in srgb,var(--ok) 8%,var(--paper));border-radius:12px;padding:1rem 1.1rem}
+.result .res-title{margin:0;font-weight:800}.result .res-file{margin:.2rem 0 0;overflow-wrap:anywhere}.result .hint{margin:.7rem 0 0;color:var(--muted);font-size:.86rem}
+.hint{color:var(--muted);font-size:.9rem;margin:.6rem 0 0}
+#docStage{position:absolute;left:0;top:0;z-index:0;background:#fff;color:#000;width:max-content;max-width:none}
+#docStage .docx-wrapper{background:#fff!important;padding:0!important}
+#docStage .docx-wrapper>section.docx{box-shadow:none!important;margin:0!important}
+button,a.btn,.tab,.card,.drop{touch-action:manipulation}
+.ws *{scroll-margin-top:84px}
+@media(pointer:coarse){
+  .launcher kbd{display:none}.launcher input{padding-right:1rem}
+  .flist button{width:44px;height:44px}.btn{min-height:46px}.tab{padding:.6rem 1.1rem}
+  #pr{display:none}
+}
+@media print{
+  @page{margin:0}
+  body.printing-doc>*:not(#docStage){display:none!important}
+  body.printing-doc #docStage{position:static!important;display:block!important;width:auto!important}
+  body.printing-doc #docStage .docx-wrapper>section.docx{break-after:page}
+}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -172,6 +196,7 @@ canvas.qr{max-width:100%;height:auto;border:1px solid var(--line);border-radius:
     <a class="brand" href="./"><span class="logo"><svg viewBox="0 0 24 24"><path d="M5 12.5l5 5 9-11"/></svg></span>QuickDesk</a>
     <nav aria-label="Main">
       <a href="#tools">Tools</a><a href="#privacy">Privacy</a><a href="#faq">FAQ</a>
+      <button class="btn" id="installBtn" type="button" hidden style="min-height:38px;padding:.3rem .9rem">Install app</button>
       <button class="icon-btn" id="themeBtn" aria-label="Switch dark or light mode"><svg viewBox="0 0 24 24"><path d="M21 13.5A8.5 8.5 0 1110.5 3a7 7 0 0010.5 10.5z"/></svg></button>
     </nav>
   </div>
@@ -219,7 +244,7 @@ canvas.qr{max-width:100%;height:auto;border:1px solid var(--line);border-radius:
     <h2>Questions people ask</h2>
     <details><summary>Is it really free?</summary><p>Yes. There are no paid plans, page limits or watermarks.</p></details>
     <details><summary>Which browsers work?</summary><p>Current Chrome, Edge, Firefox and Safari. Screen recording needs a computer browser (Chrome, Edge or Firefox). On a phone, the scanner can open the camera directly.</p></details>
-    <details><summary>Can I convert Word or Excel files to PDF?</summary><p>Not in the browser, because that needs the Office software itself. Open the file in Word or Excel and choose Save as PDF, then use these tools to merge, split or compress it.</p></details>
+    <details><summary>Can I convert Word or Excel files to PDF?</summary><p>Word files (.docx) can be converted with the Word to PDF tool. Excel and PowerPoint files are not supported yet: open them in their own app and choose Save as PDF, then use these tools to merge, split or compress the result.</p></details>
     <details><summary>Why does Compress PDF make text unselectable?</summary><p>It rebuilds each page as a compressed image, which gives a much smaller file but removes selectable text. Keep your original if you need to search or copy from it.</p></details>
     <details><summary>Do invoices and text-to-PDF support Urdu or Arabic?</summary><p>Not yet. Those two tools use English (Latin) letters only. Recording, OCR (English, Urdu, Arabic), images and all other PDF tools work with any language.</p></details>
   </div>
@@ -255,6 +280,19 @@ function dl(blob, name) {
   const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name;
   document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 4000);
 }
+let lastUrl = '';
+/* Shows a Download button (and Share on phones). Phone browsers often block downloads that start after processing, but never block a tap. */
+function deliver(root, blob, name) {
+  if (lastUrl) URL.revokeObjectURL(lastUrl); const url = lastUrl = URL.createObjectURL(blob);
+  let box = $('.result', root); if (!box) { box = document.createElement('div'); box.className = 'result'; root.appendChild(box); }
+  let file = null; try { file = new File([blob], name, { type: blob.type }); } catch (e) {}
+  const canShare = !!(file && navigator.canShare && navigator.share && navigator.canShare({ files: [file] }));
+  box.innerHTML = '<p class="res-title">Your file is ready</p><p class="res-file"><b>' + esc(name) + '</b> · ' + fmt(blob.size) + '</p><div class="row"><a class="btn primary" href="' + url + '" download="' + esc(name) + '">Download</a>' +
+    (canShare ? '<button class="btn" type="button" id="shareBtn">Share or save to phone</button>' : '') + '</div><p class="hint">Nothing downloaded? Tap Download again' + (canShare ? ', or use Share and choose “Save to Files”.' : '. On iPhone, press and hold Download and choose “Download Linked File”.') + '</p>';
+  if (canShare) $('#shareBtn', box).onclick = () => navigator.share({ files: [file], title: name }).catch(e => { if (e.name !== 'AbortError') toast('Sharing is not available here. Use Download instead.', 'err'); });
+  try { box.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } catch (e) {}
+  if (window.matchMedia && matchMedia('(hover: hover) and (pointer: fine)').matches) dl(blob, name);   // on a computer the file also downloads straight away
+}
 async function run(btn, fn) {
   const label = btn.textContent; btn.disabled = true; btn.classList.add('busy');
   try { await fn(); } catch (e) { console.error(e); toast(e.message || 'Something went wrong. Please try again.', 'err'); const st = btn.closest('#wsBody') && $('.status', $('#wsBody')); if (st) { st.textContent = e.message || 'Something went wrong.'; st.classList.add('err'); } }
@@ -268,7 +306,10 @@ const LIB = {
   pdfjs: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
   pdfjsWorker: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js',
   qr: 'https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js',
-  tess: 'https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js'
+  tess: 'https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js',
+  jszip: ['https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js'],
+  docx: ['https://cdn.jsdelivr.net/npm/docx-preview@0.3/dist/docx-preview.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/docx-preview/0.3.3/docx-preview.min.js'],
+  h2c: ['https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js']
 };
 const _loaded = {};
 function loadScript(src) {
@@ -279,7 +320,9 @@ function loadScript(src) {
   }));
 }
 async function need(name) {
-  await loadScript(LIB[name]);
+  const src = LIB[name];
+  if (Array.isArray(src)) { let last = null; for (const u of src) { try { await loadScript(u); last = null; break; } catch (e) { last = e; } } if (last) throw last; }
+  else await loadScript(src);
   if (name === 'pdfjs') window.pdfjsLib.GlobalWorkerOptions.workerSrc = LIB.pdfjsWorker;
 }
 
@@ -301,6 +344,7 @@ const ICON = {
   invoice: '<path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/>',
   qr: '<rect x="4" y="4" width="6" height="6"/><rect x="14" y="4" width="6" height="6"/><rect x="4" y="14" width="6" height="6"/><path d="M14 14h2v2h-2zM18 14h2v6h-4M14 18h2"/>',
   text: '<path d="M5 6h14M12 6v13M9 19h6"/>',
+  doc: '<path d="M6 3h9l4 4v14H6z"/><path d="M9 11l1.4 6 1.6-4.5 1.6 4.5 1.4-6"/>',
   key: '<circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3"/>'
 };
 const svg = n => '<svg viewBox="0 0 24 24" aria-hidden="true">' + ICON[n] + '</svg>';
@@ -444,7 +488,7 @@ function imgPdf(root, scan) {
   const cam = $('#cam', root); if (cam) cam.addEventListener('change', () => { dz.add(cam.files); cam.value = ''; });
   go.onclick = () => run(go, async () => {
     const bytes = await imagesToPdf(dz.files, { page: $('#ps', root).value, margin: +$('#mg', root).value, filter: $('#fl', root).value, onProgress: (i, n) => setStatus(root, 'Processing image ' + i + ' of ' + n + '…') });
-    dl(pdfBlob(bytes), scan ? 'scan.pdf' : 'images.pdf'); setStatus(root, 'Done. ' + dz.files.length + ' page(s), ' + fmt(bytes.length) + '.'); toast('PDF downloaded');
+    deliver(root, pdfBlob(bytes), scan ? 'scan.pdf' : 'images.pdf'); setStatus(root, 'Done. ' + dz.files.length + ' page(s), ' + fmt(bytes.length) + '.'); toast('PDF downloaded');
   });
 }
 
@@ -459,7 +503,7 @@ function mergePdf(root) {
       setStatus(root, 'Adding file ' + (i + 1) + ' of ' + dz.files.length + '…');
       const src = await loadPdfLib(f); (await out.copyPages(src, src.getPageIndices())).forEach(p => out.addPage(p));
     }
-    const bytes = await out.save(); dl(pdfBlob(bytes), 'merged.pdf'); setStatus(root, 'Done. ' + out.getPageCount() + ' pages, ' + fmt(bytes.length) + '.'); toast('Merged PDF downloaded');
+    const bytes = await out.save(); deliver(root, pdfBlob(bytes), 'merged.pdf'); setStatus(root, 'Done. ' + out.getPageCount() + ' pages, ' + fmt(bytes.length) + '.'); toast('Merged PDF downloaded');
   });
 }
 
@@ -491,7 +535,7 @@ function pageTool(root, mode) {
       const a = +$('#an', root).value; out = src;
       idx.forEach(i => { const p = out.getPage(i); p.setRotation(PDFLib.degrees((p.getRotation().angle + a) % 360)); });
     }
-    const bytes = await out.save(); dl(pdfBlob(bytes), copy[3]); setStatus(root, 'Done. ' + out.getPageCount() + ' pages, ' + fmt(bytes.length) + '.'); toast('PDF downloaded');
+    const bytes = await out.save(); deliver(root, pdfBlob(bytes), copy[3]); setStatus(root, 'Done. ' + out.getPageCount() + ' pages, ' + fmt(bytes.length) + '.'); toast('PDF downloaded');
   });
 }
 
@@ -514,7 +558,7 @@ function pdfToImages(root) {
     }
     setStatus(root, 'Done. ' + results.length + ' image(s).'); zipBtn.hidden = results.length < 2;
   });
-  zipBtn.onclick = () => run(zipBtn, async () => dl(await makeZip(results), 'pdf-pages.zip'));
+  zipBtn.onclick = () => run(zipBtn, async () => deliver(root, await makeZip(results), 'pdf-pages.zip'));
 }
 
 /* Compress PDF (rebuilds pages as compressed images) */
@@ -534,7 +578,7 @@ function compressPdf(root) {
       const jpg = await out.embedJpg(await (await toBlob(c, 'image/jpeg', q)).arrayBuffer()); out.addPage([base.width, base.height]).drawImage(jpg, { x: 0, y: 0, width: base.width, height: base.height });
     }
     const bytes = await out.save(), before = dz.files[0].size, saved = Math.round((1 - bytes.length / before) * 100);
-    dl(pdfBlob(bytes), dz.files[0].name.replace(/\.pdf$/i, '') + '-compressed.pdf');
+    deliver(root, pdfBlob(bytes), dz.files[0].name.replace(/\.pdf$/i, '') + '-compressed.pdf');
     setStatus(root, fmt(before) + ' → ' + fmt(bytes.length) + (saved > 0 ? ' (' + saved + '% smaller).' : '. This file was already small, so the original may be better.'));
   });
 }
@@ -563,7 +607,7 @@ function imageCompress(root) {
     }
     setStatus(root, 'Done. ' + results.length + ' image(s).'); zipBtn.hidden = results.length < 2;
   });
-  zipBtn.onclick = () => run(zipBtn, async () => dl(await makeZip(results), 'images.zip'));
+  zipBtn.onclick = () => run(zipBtn, async () => deliver(root, await makeZip(results), 'images.zip'));
 }
 
 /* OCR */
@@ -586,6 +630,9 @@ function ocrTool(root) {
 
 /* Screen + voice recorder */
 function recorder(root, screen) {
+  if (screen && !SCREEN_OK) {
+    root.innerHTML = '<div class="note"><b>Screen recording is not available on phones.</b><p>Phone browsers do not let websites record the screen. Open QuickDesk on a computer (Chrome, Edge or Firefox) to use it. You can still record audio with the voice recorder.</p><a class="btn primary" href="#voice-recorder">Open the voice recorder</a></div>'; return;
+  }
   root.innerHTML = '<div class="grid2">' + (screen
     ? '<label class="check"><input type="checkbox" id="mic" checked>Record my microphone</label><label class="check"><input type="checkbox" id="sys">Include computer sound (if the browser offers it)</label>' +
       '<label class="field">Quality<select id="qa"><option value="2500000">Standard</option><option value="5000000">High</option><option value="1000000">Small file</option></select></label>'
@@ -647,7 +694,7 @@ function textToPdf(root) {
       if (!para.trim()) { y -= lh * .6; continue; }
       let cur = ''; for (const w of para.split(/\s+/)) { const t = cur ? cur + ' ' + w : w; if (font.widthOfTextAtSize(t, size) > maxW && cur) { line(cur, font, size); cur = w; } else cur = t; } line(cur, font, size);
     }
-    const bytes = await pdf.save(); dl(pdfBlob(bytes), 'document.pdf'); toast('PDF downloaded');
+    const bytes = await pdf.save(); deliver(root, pdfBlob(bytes), 'document.pdf'); toast('PDF downloaded');
   });
 }
 function invoice(root) {
@@ -691,7 +738,7 @@ function invoice(root) {
     y -= 6; [['Subtotal', val(t.sub)], ['Discount', '-' + val(t.disc)], ['Tax', val(t.tax)]].forEach(r => { draw(r[0], 380, y, { color: mute }); right(r[1], R - 8, y); y -= 15; });
     page.drawRectangle({ x: 370, y: y - 6, width: R - 370, height: 24, color: blue }); draw('Total', 380, y, { bold: true, color: rgb(1, 1, 1) }); right(val(t.total), R - 8, y, { bold: true, color: rgb(1, 1, 1) }); y -= 40;
     const notes = $('#nt', root).value.trim(); if (notes) { draw('Notes', L, y, { bold: true }); y -= 14; notes.split(/\r?\n/).forEach(l => { draw(l, L, y, { color: mute }); y -= 13; }); }
-    const bytes = await pdf.save(); dl(pdfBlob(bytes), 'invoice-' + ($('#in', root).value || 'draft').replace(/[^\w-]+/g, '') + '.pdf'); toast('Invoice downloaded');
+    const bytes = await pdf.save(); deliver(root, pdfBlob(bytes), 'invoice-' + ($('#in', root).value || 'draft').replace(/[^\w-]+/g, '') + '.pdf'); toast('Invoice downloaded');
   });
 }
 
@@ -725,7 +772,7 @@ function qrTool(root) {
     } catch (e) { setStatus(root, e.message && e.message.indexOf('overflow') > -1 ? 'That is too much text for a QR code. Shorten it.' : (e.message || 'Could not create the code.'), true); }
   }
   root.addEventListener('input', e => { if (e.target.id === 'ty') build(); else draw(); }); build();
-  $('#go', root).onclick = async () => { const b = await toBlob($('#cv', root), 'image/png'); if (b && payload()) dl(b, 'qr-code.png'); else toast('Type something first', 'err'); };
+  $('#go', root).onclick = () => { if (!payload()) return toast('Type something first', 'err'); const a = document.createElement('a'); a.href = $('#cv', root).toDataURL('image/png'); a.download = 'qr-code.png'; document.body.appendChild(a); a.click(); a.remove(); };
 }
 
 /* Text toolkit */
@@ -770,10 +817,55 @@ function passwordTool(root) {
   $('#cp', root).onclick = async () => { try { await navigator.clipboard.writeText($('#pw', root).textContent); toast('Copied'); } catch (e) { toast('Select the password and copy it manually', 'err'); } };
 }
 
+
+/* Word (.docx) to PDF: the browser draws the document, then each page is saved as a picture inside a PDF */
+function wordToPdf(root) {
+  root.innerHTML = '<div id="dz"></div><div class="grid2"><label class="field">Quality<select id="ql"><option value="2">Standard</option><option value="3">High (bigger file)</option><option value="1.4">Small file</option></select></label></div>' +
+    '<p class="hint">Works with .docx files (Word 2007 or newer). Urdu, Arabic and English are supported. The PDF is made from page pictures, so text cannot be selected. If the document uses fonts that are not on this device, the layout can shift slightly.</p>' +
+    '<div class="row"><button class="btn primary" id="go" type="button" disabled>Convert to PDF</button><button class="btn" id="pr" type="button" hidden>Print or save with selectable text</button></div><p class="status"></p>';
+  const go = $('#go', root), pr = $('#pr', root);
+  const dz = dropzone($('#dz', root), { accept: '.docx,.doc,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document', multiple: false, hint: 'Choose one Word document (.docx)', onChange: f => go.disabled = !f.length });
+  const stage = () => { let s = $('#docStage'); if (!s) { s = document.createElement('div'); s.id = 'docStage'; document.body.appendChild(s); } s.innerHTML = ''; return s; };
+  const cssPageHeight = (sec, st) => { const h = sec.style.minHeight; if (!h) return 1122.5; const pb = document.createElement('div'); pb.style.cssText = 'position:absolute;visibility:hidden;width:1px;height:' + h; st.appendChild(pb); const v = pb.offsetHeight; pb.remove(); return v > 200 ? v : 1122.5; };
+  go.onclick = () => run(go, async () => {
+    const f = dz.files[0];
+    if (/\.doc$/i.test(f.name)) throw new Error('Old .doc files are not supported. In Word choose File > Save As > Word Document (.docx), then try again.');
+    const head = new Uint8Array(await f.slice(0, 4).arrayBuffer());
+    if (!(head[0] === 0x50 && head[1] === 0x4B)) throw new Error('This file is not a valid .docx document. Open it in Word and save it as .docx first.');
+    setStatus(root, 'Loading the converter…'); await need('jszip'); await need('docx'); await need('h2c'); await need('pdflib');
+    const st = stage(); setStatus(root, 'Reading the document…');
+    await docx.renderAsync(f, st, null, { className: 'docx', inWrapper: true, breakPages: true, ignoreLastRenderedPageBreak: false, renderHeaders: true, renderFooters: true, renderFootnotes: true, renderEndnotes: true, useBase64URL: true });
+    if (document.fonts && document.fonts.ready) await document.fonts.ready;
+    await Promise.all($$('img', st).map(im => im.complete ? 0 : new Promise(r => { im.onload = im.onerror = r; })));
+    let secs = $$('.docx-wrapper > section', st); if (!secs.length) secs = $$('section', st);
+    if (!secs.length) throw new Error('Nothing could be read from this document.');
+    const coarse = window.matchMedia && matchMedia('(pointer: coarse)').matches, scale = Math.min(+$('#ql', root).value, coarse ? 2 : 3);
+    const pdf = await PDFLib.PDFDocument.create(); let pages = 0;
+    for (let i = 0; i < secs.length; i++) {
+      setStatus(root, 'Converting page ' + (i + 1) + ' of ' + secs.length + '…');
+      const sec = secs[i], r = sec.getBoundingClientRect(), wCss = r.width, hCss = r.height, pageCss = cssPageHeight(sec, st);
+      const canvas = await html2canvas(sec, { scale, backgroundColor: '#ffffff', useCORS: true, logging: false }), k = canvas.width / wCss;
+      const n = hCss > pageCss * 1.04 ? Math.ceil(hCss / pageCss - 0.02) : 1;   // long pages without a page break are cut into page-sized pieces
+      for (let q = 0; q < n; q++) {
+        let part = canvas;
+        if (n > 1) { const y0 = Math.round(q * pageCss * k), hh = Math.min(Math.round(pageCss * k), canvas.height - y0); part = document.createElement('canvas'); part.width = canvas.width; part.height = Math.round(pageCss * k); const x = part.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, part.width, part.height); x.drawImage(canvas, 0, y0, canvas.width, hh, 0, 0, canvas.width, hh); }
+        const jpg = await pdf.embedJpg(await (await toBlob(part, 'image/jpeg', 0.92)).arrayBuffer()), pw = wCss * 0.75, ph = (n > 1 ? pageCss : hCss) * 0.75;
+        pdf.addPage([pw, ph]).drawImage(jpg, { x: 0, y: 0, width: pw, height: ph }); pages++;
+      }
+    }
+    const bytes = await pdf.save(); setStatus(root, 'Done. ' + pages + ' page(s), ' + fmt(bytes.length) + '.');
+    deliver(root, pdfBlob(bytes), f.name.replace(/\.docx?$/i, '') + '.pdf'); pr.hidden = false;
+  });
+  pr.onclick = () => { document.body.classList.add('printing-doc'); window.addEventListener('afterprint', () => document.body.classList.remove('printing-doc'), { once: true }); window.print(); };
+  return () => { const s = $('#docStage'); if (s) s.remove(); document.body.classList.remove('printing-doc'); };
+}
+
 /* ---------- tool list (edit this to add, remove or rename tools) ---------- */
+const SCREEN_OK = !!(navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia);
 const CATS = [['all', 'All tools'], ['pdf', 'PDF and scan'], ['img', 'Images and text'], ['rec', 'Recording'], ['off', 'Office helpers']];
 const TOOLS = [
-  { id: 'screen-recorder', cat: 'rec', icon: 'screen', hot: 1, title: 'Screen recorder', desc: 'Record your screen and voice. Saves a video you can share.', kw: 'record video capture tutorial meeting loom', render: r => recorder(r, true) },
+  { id: 'screen-recorder', cat: 'rec', icon: 'screen', hot: 1, desktop: 1, title: 'Screen recorder', desc: 'Record your screen and voice. Saves a video you can share.', kw: 'record video capture tutorial meeting loom', render: r => recorder(r, true) },
+  { id: 'word-to-pdf', cat: 'pdf', icon: 'doc', hot: 1, title: 'Word to PDF', desc: 'Turn a Word (.docx) document into a PDF. Urdu and Arabic work too.', kw: 'doc docx microsoft office convert document', render: wordToPdf },
   { id: 'merge-pdf', cat: 'pdf', icon: 'merge', hot: 1, title: 'Merge PDF', desc: 'Combine several PDFs into one file, in the order you choose.', kw: 'join combine pdf', render: mergePdf },
   { id: 'image-to-pdf', cat: 'pdf', icon: 'imgpdf', hot: 1, title: 'Image to PDF', desc: 'Turn JPG or PNG photos into one tidy PDF.', kw: 'jpg png photo convert picture', render: r => imgPdf(r, false) },
   { id: 'scan-to-pdf', cat: 'pdf', icon: 'scan', hot: 1, title: 'Scan document to PDF', desc: 'Photograph a paper and get a clean, readable PDF.', kw: 'scanner camera document paper cleanup', render: r => imgPdf(r, true) },
@@ -798,7 +890,7 @@ const grid = $('#grid'), q = $('#q');
 function renderGrid() {
   const term = q.value.trim().toLowerCase(), words = term.split(/\s+/).filter(Boolean);
   const list = TOOLS.filter(t => (cat === 'all' || t.cat === cat) && words.every(w => (t.title + ' ' + t.desc + ' ' + t.kw).toLowerCase().includes(w)));
-  grid.innerHTML = list.length ? list.map(t => '<a class="card" data-cat="' + t.cat + '" href="#' + t.id + '"><span class="ico">' + svg(t.icon) + '</span><h3>' + esc(t.title) + '</h3><p>' + esc(t.desc) + '</p>' + (t.hot ? '<span class="hot">Popular</span>' : '') + '</a>').join('')
+  grid.innerHTML = list.length ? list.map(t => '<a class="card" data-cat="' + t.cat + '" href="#' + t.id + '"><span class="ico">' + svg(t.icon) + '</span><h3>' + esc(t.title) + (t.desktop && !SCREEN_OK ? ' <span class="tag">Computer only</span>' : (t.hot ? ' <span class="hot">Popular</span>' : '')) + '</h3><p>' + esc(t.desc) + '</p></a>').join('')
     : '<div class="empty" style="grid-column:1/-1">No tool matches “' + esc(q.value) + '”. Try words like pdf, image, record or scan.</div>';
 }
 $('#tabs').innerHTML = CATS.map(c => '<button class="tab" type="button" data-c="' + c[0] + '" aria-pressed="' + (c[0] === 'all') + '">' + c[1] + '</button>').join('');
@@ -814,13 +906,13 @@ function openTool(id) {
   const t = TOOLS.find(x => x.id === id); if (!t) return;
   if (cleanupFn) { cleanupFn(); cleanupFn = null; }
   lastFocus = lastFocus || document.activeElement; $('#wsTitle').textContent = t.title; $('#wsDesc').textContent = t.desc; document.title = t.title + ' – QuickDesk';
-  const body = $('#wsBody'); body.innerHTML = ''; ws.hidden = false; document.body.classList.add('noscroll'); ws.scrollTop = 0;
+  const old = $('#wsBody'), body = old.cloneNode(false); old.replaceWith(body); ws.hidden = false; document.body.classList.add('noscroll'); ws.scrollTop = 0;
   try { cleanupFn = t.render(body) || null; } catch (e) { body.innerHTML = '<p class="status err">This tool could not start: ' + esc(e.message) + '</p>'; }
   $('#wsBack').focus();
 }
 function closeTool() {
   if (cleanupFn) { cleanupFn(); cleanupFn = null; }
-  ws.hidden = true; $('#wsBody').innerHTML = ''; document.body.classList.remove('noscroll'); document.title = 'QuickDesk – Free online office tools: PDF, scanner, screen recorder and more';
+  ws.hidden = true; const o = $('#wsBody'); o.replaceWith(o.cloneNode(false)); document.body.classList.remove('noscroll'); document.title = 'QuickDesk – Free online office tools: PDF, scanner, screen recorder and more';
   if (location.hash) history.replaceState(null, '', location.pathname + location.search);
   if (lastFocus && lastFocus.focus) lastFocus.focus(); lastFocus = null;
 }
@@ -831,6 +923,13 @@ $('#wsBack').addEventListener('click', closeTool); window.addEventListener('hash
 const root = document.documentElement, saved = localStorage.getItem('qd-theme');
 root.dataset.theme = saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 $('#themeBtn').addEventListener('click', () => { const n = root.dataset.theme === 'dark' ? 'light' : 'dark'; root.dataset.theme = n; try { localStorage.setItem('qd-theme', n); } catch (e) {} });
+
+/* ---------- installable app (PWA) ---------- */
+let installEvt = null;
+window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); installEvt = e; $('#installBtn').hidden = false; });
+$('#installBtn').addEventListener('click', async () => { if (!installEvt) return; installEvt.prompt(); try { await installEvt.userChoice; } catch (e) {} installEvt = null; $('#installBtn').hidden = true; });
+window.addEventListener('appinstalled', () => { $('#installBtn').hidden = true; toast('QuickDesk installed. Open it from your desktop or start menu.'); });
+if ('serviceWorker' in navigator && location.protocol !== 'file:') navigator.serviceWorker.register('sw.js').catch(() => {});
 </script>
 </body>
 </html>
